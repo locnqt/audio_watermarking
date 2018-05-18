@@ -3,7 +3,7 @@
 -Change PHP's config "..\xampp\php\php.ini" upload_max_filesize = 50M post_max_size=100M.
 
 -Login(username-password):
-	admin-123456
+	admin-123456, 
 	locnqt-654321
 	
 -In database folder have .sql file to import, and a .WAV file that you can test	
