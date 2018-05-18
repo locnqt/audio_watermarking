@@ -1,0 +1,145 @@
+/* CSS Document */
+*{
+ margin:0px;
+ padding:0px;
+}
+.clr{
+	clear:both;	
+}
+body {
+	background: url(../images/background.jpg) center top;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+}
+.main{
+	width:1000px;
+	margin: 0px auto;
+}
+.header{
+	text-align:center;
+	margin: 0px auto;
+	
+}
+h1{animation: myanimation 10s infinite;}
+@keyframes myanimation {
+  0% {color: red;}
+  25%{color:yellow;}
+  50%{color:green;}
+  75%{color:brown;}
+  100% {color: red;}
+}
+
+table {
+	animation: myanimation 10s infinite;
+}
+.scrollable{
+height: 330px; /**adjust as required**/
+overflow-y:scroll;}
+}
+table {
+    background:#008488;
+    color:#FFF;
+    margin-bottom:0;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	border:none;
+}
+#menu{
+	width:750px;
+	height:50px;
+	background:#000;
+	margin: 0px auto;
+	box-sizing:border-box;
+}
+#menu ul{
+	list-style:none;
+}
+#menu ul li{
+	float:left;
+	/*border-right:1px dotted #FFCC33;*/
+	position:relative;
+}
+#menu ul li a, #menu ul li a:visited{
+	padding: 0 15px 0 15px;
+	margin: 14px 20px 14px 20px;
+	text-decoration:none;
+	color:#FFF;
+	float:left;
+}
+#menu ul li a:hover{
+	color:#CCC;
+	border-bottom:5px #FFCC00 solid;
+}
+.signin_form{
+	float:left;
+	padding: 0 0 0 160px;
+	position:fixed;
+	left:50%;
+	margin-left:-300px;
+}
+.title_form_row{
+	color:#a53d17;
+	margin-top: 15px;
+}
+label .signin{
+	width:75px;
+	float:left;
+	font-size:12px;
+	text-align:right;
+	color:#333;
+	padding: 4px 5px 0 0;
+}
+input.signin{
+	text-decoration:none;
+	font-size:16px;
+	float:right;
+	display:block;
+}
+input.signin_input{
+	background:#fff
+	color: #000;
+	border: 1px #dfdfdf solid;
+}
+.upload_form{
+	float:left;
+	padding: 0 0 0 160px;
+	position:fixed;
+	left:50%;
+	margin-left:-300px;
+	color:#0F0;
+	font-size:18px;
+}
+.form_row{
+	color:#0F0;
+	padding-top:15px;
+}
+label.upload{
+	text-align:right;
+	padding: 4px 5px 0 0;
+	margin: 10px 0;
+}
+input.upload_input{
+	background:#fff
+	color: #000;
+	margin: 10px 0;
+}
+input.upload{
+	text-decoration:none;
+	float:right;
+	margin-top:15px;
+	display:block;
+}
+.footer{
+	width: 600px;
+	margin: 0px auto;
+	text-align:center;
+	color:#FFF;
+	position:fixed;
+    bottom:0;
+    left:50%;
+	margin-left:-300px;
+}
+.footer a{
+	text-decoration:none;
+	color:#FFF;
+}
