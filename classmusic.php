@@ -51,7 +51,7 @@ class MyMusic
 
 class WavFile{
 	private static $HEADER_LENGTH = 44;
-
+	//https://www.w3schools.com/php/func_misc_unpack.asp
 	public static function ReadFile($filename) {
 		$filesize = filesize($filename);
 		if ($filesize<self::$HEADER_LENGTH)
@@ -94,15 +94,15 @@ class WavFile{
 
 
 		private static function readString($handle, $length) {
-			return self::readUnpacked($handle, 'a*', $length);
+			return self::readUnpacked($handle, 'a*', $length); //a - NUL-padded string
 		}
 
 		private static function readLong($handle) {
-			return self::readUnpacked($handle, 'V', 4);
+			return self::readUnpacked($handle, 'V', 4); //V - unsigned long (always 32 bit, little endian byte order)
 		}
 
 		private static function readWord($handle) {
-			return self::readUnpacked($handle, 'v', 2);
+			return self::readUnpacked($handle, 'v', 2); //v - unsigned short (always 16 bit, little endian byte order)
 		}
 
 		private static function readUnpacked($handle, $type, $length) {

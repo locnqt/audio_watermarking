@@ -9,7 +9,7 @@ if($_SESSION['username'])
 	?>
     <script>
     alert('Đăng xuất thành công!');
-	location.href='<?php echo $url_host ?>index.php';
+	location.href='index.php';
 	</script>
     <?php
 
@@ -18,7 +18,7 @@ else {
 
 	?>
     <script>
-	location.href='<?php echo $url_host ?>index.php';
+	location.href='index.php';
 	</script>
     <?php
 }

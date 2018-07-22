@@ -42,13 +42,13 @@ if (isset($_SESSION['username'])){
 		function TexttoBin($text){
 			$bin = "";
 			for($i = 0; $i < strlen($text); $i++)
-				$bin .= str_pad(decbin(ord($text[$i])), 8, '0', STR_PAD_LEFT);
+				$bin .= str_pad(decbin(ord($text[$i])), 8, '0', STR_PAD_LEFT); //ord tra ve ascii, decbin decimal tobinary, them 0 vao trai de du 8bit
 			return $bin;
 		}
 		//Create signature
 		$signature = TexttoBin(str_pad(strlen($_SESSION['username']), 10, '0', STR_PAD_LEFT) . $_SESSION['username']);
 		//Change bit
-		$subchunk3data = unpack("H*", $tmp['subchunk3']['data']);
+		$subchunk3data = unpack("H*", $tmp['subchunk3']['data']); //doc ra hex
 		if (strlen($subchunk3data[1]) >= strlen($signature)){
 			for($i = 0; $i < strlen($signature); $i++){
 				$newhex = str_pad(dechex(bindec(substr_replace(str_pad(hex2bin(substr($subchunk3data[1], $i*2, 2)), 8, '0', STR_PAD_LEFT), substr($signature, $i, 1), 7, 1))), 2, '0', STR_PAD_LEFT);

@@ -21,21 +21,20 @@ $n = mysqli_num_rows($showListDaMua);
   <table class="table table-hover">
     <tbody class="detailrow">
       <?php
-            if($n>0){
+            
 
             $i = 1;
             while($rowMusic = mysqli_fetch_array($showListDaMua)){
                 ?>
       <tr>
         <td><?php echo"$i"?></td>
-        <td><?php echo'<div data-cover="http://digital.akauk.com/utils/musicPlayer/data/dubstep.jpg" ><a href="http://docs.google.com/uc?export=open&id='.$rowMusic['fieldsid'].'&type=.wav"></a>'.$rowMusic['song']." - ".$rowMusic['singer'].' </div>'
+        <td><?php echo'<div>'.$rowMusic['song']." - ".$rowMusic['singer'].' </div>'
                     ?></td>
-        <td><?php echo '<a href="http://docs.google.com/uc?export=open&id='.$rowMusic['fieldsid'].'&type=.wav" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>DownLoad</a>'
-                    ?></td>
+        <td><a href="<?php echo $rowMusic['link']?>" target="_blank" ></i>DownLoad</a></td>
       </tr>
       <?php $i++; } 
 
-      		} else echo "<h3 class='text-center'>You didn't buy any song yet!</h3>";
+      		
       ?>
     </tbody>
   </table>

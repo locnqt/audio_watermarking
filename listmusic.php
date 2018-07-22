@@ -2,8 +2,8 @@
 include_once("classmusic.php");
 $mm= new MyMusic;
 $showMusic= $mm->showMusic();
-ini_set('memory_limit', '-1');
-ini_set('max_execution_time', 180);
+ini_set('memory_limit', '-1'); //This will allow the script to use unlimited memory and to allow it to execute without any execution time limition
+ini_set('max_execution_time', 180); //định PHP cho time-out là 30 giây. Nếu bạn cho phép người dùng upload 10M, thì bạn phải chỉnh file cấu hình cho thời gian time-out tăng lên.
 ?>
 
 		<div class="clr"></div>
@@ -23,13 +23,11 @@ ini_set('max_execution_time', 180);
 				<tbody class="detailrow">
 					<?php
 					$i = 1;
-					while($rowMusic = mysqli_fetch_array($showMusic)){ 
-
-
-						echo "<tr> <td class=\"dbody col-xs-1\">" . $i . "</td>
-						<td class=\"dbody col-xs-5\">" . $rowMusic['song'] . "</td>
-						<td class=\"dbody col-xs-4\">" . $rowMusic['singer'] . "</td>
-						<td class=\"dbody col-xs-2\">";
+					while($rowMusic = mysqli_fetch_array($showMusic)){ // sẽ tìm và trả về một dòng kết quả của một truy vấn MySQL nào đó dưới dạng một mảng kết hợp, mảng liên tục hoặc cả hai.
+						echo "<tr> <td>" . $i . "</td>
+						<td>" . $rowMusic['song'] . "</td>
+						<td>" . $rowMusic['singer'] . "</td>
+						<td>";
 
 						if (isset($_SESSION['username'])){
 							if(($mm->checkListBuy($rowMusic['fieldspr'],$_SESSION['username']))==0){
@@ -52,7 +50,7 @@ ini_set('max_execution_time', 180);
 				</tbody>
 			</table>
             </div>
-		</div><!-- /.container -->
+		</div>
 		<div class="clr"></div>
 
 
@@ -61,30 +59,10 @@ ini_set('max_execution_time', 180);
 
 <script>
 	(function ($) {
-		"use strict";
-		$('.column100').on('mouseover',function(){
-			var table1 = $(this).parent().parent().parent();
-			var table2 = $(this).parent().parent();
-			var verTable = $(table1).data('vertable')+"";
-			var column = $(this).data('column') + ""; 
-
-			$(table2).find("."+column).addClass('hov-column-'+ verTable);
-			$(table1).find(".row100.head ."+column).addClass('hov-column-head-'+ verTable);
-		});
-
-		$('.column100').on('mouseout',function(){
-			var table1 = $(this).parent().parent().parent();
-			var table2 = $(this).parent().parent();
-			var verTable = $(table1).data('vertable')+"";
-			var column = $(this).data('column') + ""; 
-
-			$(table2).find("."+column).removeClass('hov-column-'+ verTable);
-			$(table1).find(".row100.head ."+column).removeClass('hov-column-head-'+ verTable);
-		});
 		$(".muanhac").click(function(){
 			$("*").css("cursor", "wait");
 			var buysongid = $(this).attr("id");
-			$.ajax({
+			$.ajax({ //https://www.w3schools.com/jquery/ajax_ajax.asp
 				url: "check.php",
 				type: "GET",
 				data: { buysongid : buysongid },
@@ -101,8 +79,6 @@ ini_set('max_execution_time', 180);
 				}
 			});
 		});
-
-
 	})(jQuery);
 
 </script>

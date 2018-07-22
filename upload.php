@@ -13,7 +13,8 @@ if (isset($_SESSION['username']) && $_SESSION['permission']=="1"){
     $fileType = strtolower($_FILES['upfile']['type']);
 
     if ($fileType == "audio/wav"){
-		// Upload audio file to Google Drive
+		// Upload audio file to Google Drive   https://developers.google.com/api-client-library/php/auth/service-accounts
+		//https://github.com/locnqt/audio_watermarking/tree/master/google-api-php-client-2.2.1  --> Authentication with Service Accounts
       require_once 'google-api-php-client-2.2.1/vendor/autoload.php';
       $client = new Google_Client();
       putenv('GOOGLE_APPLICATION_CREDENTIALS=google-api-php-client-2.2.1/service_account_keys.json');
@@ -21,7 +22,8 @@ if (isset($_SESSION['username']) && $_SESSION['permission']=="1"){
       $client->addScope(Google_Service_Drive::DRIVE);
       $client->useApplicationDefaultCredentials();
       $service = new Google_Service_Drive($client);
-
+		//https://developers.google.com/api-client-library/php/guide/media_upload#multipart-file-upload
+		//https://developers.google.com/drive/api/v3/manage-uploads
       $content = file_get_contents($fileName);
       $fileMetadata = new Google_Service_Drive_DriveFile(array('name' => mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $_POST['singer'] . " - " . $_POST['song'] . ".wav")));
       $file = $service->files->create($fileMetadata, array(
@@ -42,7 +44,7 @@ if (isset($_SESSION['username']) && $_SESSION['permission']=="1"){
       $batch->add($request, 'anyone');
       $results = $batch->execute();
       $service->getClient()->setUseBatch(false);
-      $fileUrl = "https://drive.google.com/file/d/" . $fileId . "/view?usp=sharing";
+      $fileUrl = "https://drive.google.com/file/d/" . $fileId . "/view?usp=sharing"; //https://webapps.stackexchange.com/questions/65763/how-can-i-hotlink-an-mp3-in-google-drive-with-a-url-ending-in-mp3
 	  
 	  // Record license to Database
       $qr = $conn->prepare("insert into music (song, singer, owner, link, fieldsid,fieldspr) values (:song, :singer, 'admin',:url,:id, :parentid);");
